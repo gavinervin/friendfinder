@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>FriendFinder</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+</head>
+
+<style>
+body{
+	background-color: #7fffd4;
+}
+h2{
+text-align: center;
+font-size: 65px;
+text-decoration:underline;
+}
+h3{
+
+}
+h4{
+	font-size: 18px;
+
+}
+h5{
+	text-align: center;
+	font-size: 40px;
+}
+</style>
+<body>
+	
+	<div class="container">
+	  
+	  <h2>Survey<h2>
+	  	<br>
+
+	  	<h5>Your info</h5>
+	  	<h4>Name </h4>
+	  	<input type="text" name="" id="name" class="form-control" required>
+<br>
+	  	<h4>Photo!</h4>
+	  	<input type="text" name="" id="photo" class="form-control" required>
+	  	<br>
+
+	  	<h3>Question 1</h3>
+	  	<h4>You prefer to spend your free time watching television.</h4>
+	  	<select data-placeholder="" class="chosen-select" id="q1">
+	  		<option value=""></option>
+	  		<option value="1">1(Agree)</option>
+	  		<option value="2">2</option>
+	  		<option value="3">3(meh)</option>
+	  		<option value="4">4</option>
+	  		<option value="5">5(Disagree)</option>
+	  	</select>
+        
+        <h3>Question 2</h3>
+	  	<h4>You prefer cooking at home to dining out.</h4>
+	  	<select data-placeholder="" class="chosen-select" id="q2">
+	  		<option value=""></option>
+	  		<option value="1">1(Agree)</option>
+	  		<option value="2">2</option>
+	  		<option value="3">3(meh)</option>
+	  		<option value="4">4</option>
+	  		<option value="5">5(Disagree)</option>
+	  	</select>
+
+	  	<h3>Question 3</h3>
+	  	<h4>You prefer cats to dogs.</h4>
+	  	<select data-placeholder="" class="chosen-select" id="q3">
+	  		<option value=""></option>
+	  		<option value="1">1(Agree)</option>
+	  		<option value="2">2</option>
+	  		<option value="3">3(meh)</option>
+	  		<option value="4">4</option>
+	  		<option value="5">5(Disagree)</option>
+	  	</select>
+
+	  	<h3>Question 4</h3>
+	  	<h4>You would rather bike than drive to a destination.</h4>
+	  	<select data-placeholder="" class="chosen-select" id="q4">
+	  		<option value=""></option>
+	  		<option value="1">1(Agree)</option>
+	  		<option value="2">2</option>
+	  		<option value="3">3(meh)</option>
+	  		<option value="4">4</option>
+	  		<option value="5">5(Disagree)</option>
+	  	</select>
+
+	  	<h3>Question 5</h3>
+	  	<h4>You enjoy answering surveys.</h4>
+	  	<select data-placeholder="" class="chosen-select" id="q5">
+	  		<option value=""></option>
+	  		<option value="1">1(Agree)</option>
+	  		<option value="2">2</option>
+	  		<option value="3">3(meh)</option>
+	  		<option value="4">4</option>
+	  		<option value="5">5(Disagree)</option>
+	  	</select>
+	  	<br>
+
+
+		<br>
+	  	<button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
+		<br>
+
+<footer class="footer">
+	<div class="container">
+		<p><a href="/api/friends">API Friends List</a> | <a href="#">GitHub Repo</a></p>
+	</div>
+</footer>
+
+</div>
+
+<div id="results-modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 class="modal-title">You're a good fit for:</h2>
+			</div>
+			<div class="modal-body">
+				<h2 id="match-name"></h2>
+				<img id="match-img" src="https://www.taleas.com/images/memes/am-i-the-only-one-around-here-that-cant-figure-out-this-shit.png" alt="">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var config ={
+		".chosen-select": {},
+		".chosen-select-deselect": {
+		 allow_single_deselect: true
+		  },
+		".chosen-select-no-single": {
+		 disable_search_threshold: 5
+		  },
+		".chosen-select-no-results": { 
+			no_results_text: "No results!" 
+		  },
+		".chosen-select-width": {
+		 width: "95%"
+		  }
+	};
+
+	   for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+    $("#submit").on("click", function(event) {
+      event.preventDefault();
+
+      function validateForm() {
+        var isValid = true;
+        $(".form-control").each(function() {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+
+        $(".chosen-select").each(function() {
+
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+        return isValid;
+      }
+
+      
+      if (validateForm()) {
+        
+        var userData = {
+          name: $("#name").val(),
+          photo: $("#photo").val(),
+          scores: [
+            $("#q1").val(),
+            $("#q2").val(),
+            $("#q3").val(),
+            $("#q4").val(),
+            $("#q5").val()
+          ]
+        };
+
+        $.post("/api/friends", userData, function(data) {
+          $("#match-name").text(data.name);
+          $("#match-img").attr("src", data.photo);
+          $("#results-modal").modal("toggle");
+
+        });
+      } else {
+        alert("FILL IT OUT!!!!");
+      }
+    });
+  </script>
+
+</body>
+
+</html>
