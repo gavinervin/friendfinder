@@ -1,0 +1,36 @@
+var friends = require('../data/friends');
+module.exports = function(app) {
+
+	app.get('/api/friends.js', function(req, res) {
+		res.json(friends);
+	});
+	app.post('/api/friends.js', function(req, res) {
+		var bestMatch = {
+			name: '',
+			photo: '',
+			friendDifference:500
+		};
+
+		var userData = req.body;
+		var userScores = userData.scores;
+
+		var totalDifference = 0;
+
+			for (var i = 0; i < friends.length; i++) {
+				console.log(friends[i]);
+				totalDifference = 0;
+
+					for (var j = 0; j < friends[i].scores[j]; j++) {
+						totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].scores[j]));
+						if (totalDifference <=bestMatch.friendDifference) {
+
+							bestMatch.name = friends[i].name;
+							bestMatch.photo = friend[i].photo;
+							bestMatch.friendDifference = totalDifference;
+					}
+				}
+		    }
+			friends.push(userData);
+			res.json(bestMatch);
+	});
+};
