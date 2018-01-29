@@ -1,7 +1,7 @@
-var friends = require('../data/friends');
+var friends = require('../data/friends.js');
 module.exports = function(app) {
 
-	app.get('/api/friends.js', function(req, res) {
+	app.get('/api/friends', function(req, res) {
 		res.json(friends);
 	});
 	app.post('/api/friends.js', function(req, res) {
@@ -14,7 +14,7 @@ module.exports = function(app) {
 		var userData = req.body;
 		var userScores = userData.scores;
 
-		var totalDifference = 0;
+		var totalDifference =0;
 
 			for (var i = 0; i < friends.length; i++) {
 				console.log(friends[i]);
